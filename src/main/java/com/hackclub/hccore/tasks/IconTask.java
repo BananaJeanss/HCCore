@@ -20,7 +20,9 @@ public class IconTask implements Runnable {
   private final HttpClient client;
   public IconTask(HCCorePlugin plugin) {
     this.plugin = plugin;
-    this.client = HttpClient.newHttpClient();
+    this.client = HttpClient.newBuilder()
+        .followRedirects(HttpClient.Redirect.ALWAYS)
+        .build();
   }
 
   @Override
